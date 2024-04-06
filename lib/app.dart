@@ -15,12 +15,19 @@ class MyApp extends StatelessWidget {
     dbPath = PrefService.of(context).get('db_path');
     int intColor = PrefService.of(context).get('ui_color3');
     wmColor = Color(intColor);
+    wmTheme = PrefService.of(context).get('ui_theme');
+    Brightness wmBr;
+    if (wmTheme == 'dark') {
+      wmBr = Brightness.dark;
+    } else {
+      wmBr = Brightness.light;
+    }
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: appTitle,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: wmColor),
+        colorScheme: ColorScheme.fromSeed(seedColor: wmColor, brightness: wmBr),
         useMaterial3: true,
       ),
       home: Scaffold(

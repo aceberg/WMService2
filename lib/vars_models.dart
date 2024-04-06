@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String dbPath = '/data/wmservice/rs1.db';
+String dbPath = '';
 
 String wmTheme = 'light';
 Color wmColor = Colors.lightGreen;
