@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pref/pref.dart';
-import 'package:wmservice/db.dart';
+import 'package:wmservice/services/db.dart';
 import 'package:wmservice/pages/show_tickets.dart';
-import 'package:wmservice/permissions.dart';
+import 'package:wmservice/services/permissions.dart';
 import 'package:wmservice/vars_models.dart';
 import 'package:wmservice/menu/drawer_menu.dart';
 
@@ -16,11 +16,9 @@ class MyApp extends StatelessWidget {
     int intColor = PrefService.of(context).get('ui_color3');
     wmColor = Color(intColor);
     wmTheme = PrefService.of(context).get('ui_theme');
-    Brightness wmBr;
+    Brightness wmBr = Brightness.light;
     if (wmTheme == 'dark') {
       wmBr = Brightness.dark;
-    } else {
-      wmBr = Brightness.light;
     }
 
     return MaterialApp(
@@ -56,18 +54,7 @@ class MyCustomForm extends StatefulWidget {
 // This class holds data related to the form.
 class MyCustomFormState extends State<MyCustomForm> {
 
-  final controller1 = TextEditingController();
-  final controller2 = TextEditingController();
-  final controller3 = TextEditingController();
-
   ToSearch toSearch = ToSearch();
-
-  @override
-  void dispose() {
-    super.dispose();
-    controller1.dispose();
-    controller2.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,44 +67,46 @@ class MyCustomFormState extends State<MyCustomForm> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child:TextFormField(
-              controller: controller1,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Street",
                 labelText: "Street",
               ),
+              onChanged: (value) {
+                toSearch.street = value;
+              },
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: TextFormField(
-              controller: controller2,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "House",
                 labelText: "House",
               ),
+              onChanged: (value) {
+                toSearch.house = value;
+              },
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: TextFormField(
-              controller: controller3,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Flat",
                 labelText: "Flat",
               ),
+              onChanged: (value) {
+                toSearch.flat = value;
+              },
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: ElevatedButton(
               onPressed: () async {
-                toSearch.street = controller1.text.toLowerCase().trim();
-                toSearch.house = controller2.text.toLowerCase().trim();
-                toSearch.flat = controller3.text.toLowerCase().trim();
-
                 bool perms = await checkPermissions();
                 if (!perms) {
                   ScaffoldMessenger.of(context).showSnackBar(

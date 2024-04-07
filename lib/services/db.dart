@@ -42,3 +42,30 @@ Future<List<Map>> searchTicket(ToSearch toSearch) async{
 
   return foundTickets;
 }
+
+Future<List<Map>> advancedSearchTicket(Map<String, TicketLine> toSearch) async{
+  bool match;
+  String strFromDB = '';
+
+  var allTickets = await selectAll();
+
+  List<Map> foundTickets = List.empty(growable: true);
+
+  for (var t in allTickets) {
+    match = true;
+    for (var v in toSearch.values) {
+      strFromDB = t[v.dbName].toLowerCase();
+      if (!strFromDB.contains(v.value)) {
+        match = false;
+        break;
+      }
+    }
+    if (match) {
+      foundTickets.add(t);
+    }
+  }
+
+  foundTickets.sort((a, b) => (b['DATE']).compareTo(a['DATE']));
+
+  return foundTickets;
+}
