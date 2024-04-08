@@ -22,6 +22,10 @@ class ExpandTicket extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Table(
+              columnWidths: const {
+                0: FlexColumnWidth(1),
+                1: FlexColumnWidth(2),
+              },
               border: TableBorder.all(width: 0.2),
               children: foundTickets.entries.map((entry) {
                 return TableRow(

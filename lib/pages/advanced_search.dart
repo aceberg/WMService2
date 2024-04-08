@@ -30,7 +30,7 @@ class AdvancedSearchForm extends StatefulWidget {
 
 class AdvancedSearchFormState extends State<AdvancedSearchForm> {
   
-  Map<String, TicketLine> toSearch = myData();
+  Map<String, TicketLine> toSearch = makeTicketLineMap();
   
   @override
   Widget build(BuildContext context) {
@@ -38,14 +38,14 @@ class AdvancedSearchFormState extends State<AdvancedSearchForm> {
       child: Form(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          child: buildForLoop(toSearch, context)
+          child: buildPaddingList(toSearch, context)
         ),
       ),
     );
   }
 }
 
-Column buildForLoop(Map<String, TicketLine> toSearch, BuildContext context) {
+Column buildPaddingList(Map<String, TicketLine> toSearch, BuildContext context) {
   
   List<Padding> myPadding = List.empty(growable: true);
 
@@ -58,7 +58,7 @@ Column buildForLoop(Map<String, TicketLine> toSearch, BuildContext context) {
             hintText: e.value.name,
           ),
           onChanged: (value) {
-            toSearch[e.key]?.value = value;
+            toSearch[e.key]?.value = value.toLowerCase().trim();
           },
         ),
       ),

@@ -3,7 +3,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:wmservice/vars_models.dart';
 
 
-Future<List<Map>> selectAll() async{
+Future<List<Map>> selectAllFromDB() async{
   if (Platform.isWindows || Platform.isLinux) {
     // Initialize FFI
     sqfliteFfiInit();
@@ -21,7 +21,10 @@ Future<List<Map>> selectAll() async{
 }
 
 Future<List<Map>> searchTicket(ToSearch toSearch) async{
-  var allTickets = await selectAll();
+  
+  if (allTickets.isEmpty) {
+    allTickets = await selectAllFromDB();
+  }
 
   List<Map> foundTickets = List.empty(growable: true);
   String st = '';
@@ -47,7 +50,9 @@ Future<List<Map>> advancedSearchTicket(Map<String, TicketLine> toSearch) async{
   bool match;
   String strFromDB = '';
 
-  var allTickets = await selectAll();
+  if (allTickets.isEmpty) {
+    allTickets = await selectAllFromDB();
+  }
 
   List<Map> foundTickets = List.empty(growable: true);
 

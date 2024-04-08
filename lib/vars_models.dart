@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+// DB content
+List<Map> allTickets = List.empty(growable: true);
+
+// Variables for Settings
 String dbPath = '';
 
 String wmTheme = 'light';
@@ -8,12 +12,14 @@ Color wmColor = Colors.lightGreen;
 String syncKey = '';
 String syncAddr = '';
 
+// For quick search
 class ToSearch {
   String street = '';
   String house = '';
   String flat = '';
 }
 
+// For advanced search
 class TicketLine {
   String name = '';
   String dbName = '';
@@ -22,11 +28,7 @@ class TicketLine {
   TicketLine(this.name, this.dbName);
 }
 
-class OneTicket {
-  Map<String, TicketLine> ticket = <String, TicketLine>{};
-}
-
-Map<String, TicketLine> myData() {
+Map<String, TicketLine> makeTicketLineMap() {
   Map<String, TicketLine> o = <String, TicketLine>{};
 
   o['date'] = TicketLine('Date', 'DATE');

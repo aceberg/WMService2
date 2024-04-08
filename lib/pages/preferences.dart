@@ -44,7 +44,7 @@ class ShowPrefs extends StatelessWidget {
         ),
         PrefColor(
           title: const Text('Main Color'),
-          pref: 'ui_color3',
+          pref: 'ui_color',
           onChange: (value) {
             wmColor = value;
           },

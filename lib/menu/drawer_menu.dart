@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wmservice/app.dart';
 import 'package:wmservice/pages/advanced_search.dart';
 import 'package:wmservice/pages/preferences.dart';
+import 'package:wmservice/pages/update_db.dart';
 import 'package:wmservice/vars_models.dart';
 
 
@@ -44,8 +45,10 @@ class DrawerMenu extends Drawer {
             leading: const Icon(Icons.sync),
             title: const Text('Sync DB'),
             onTap: () {
-              
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const UpdateDB()),
+              );
             },
           ),
           const Divider(),

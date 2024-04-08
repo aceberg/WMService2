@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     const appTitle = 'WMService';
     dbPath = PrefService.of(context).get('db_path');
-    int intColor = PrefService.of(context).get('ui_color3');
+    int intColor = PrefService.of(context).get('ui_color');
     wmColor = Color(intColor);
     wmTheme = PrefService.of(context).get('ui_theme');
     Brightness wmBr = Brightness.light;
@@ -65,7 +65,7 @@ class MyCustomFormState extends State<MyCustomForm> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
             child:TextFormField(
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -73,12 +73,12 @@ class MyCustomFormState extends State<MyCustomForm> {
                 labelText: "Street",
               ),
               onChanged: (value) {
-                toSearch.street = value;
+                toSearch.street = value.toLowerCase().trim();
               },
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
             child: TextFormField(
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -86,12 +86,12 @@ class MyCustomFormState extends State<MyCustomForm> {
                 labelText: "House",
               ),
               onChanged: (value) {
-                toSearch.house = value;
+                toSearch.house = value.toLowerCase().trim();
               },
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
             child: TextFormField(
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -99,12 +99,12 @@ class MyCustomFormState extends State<MyCustomForm> {
                 labelText: "Flat",
               ),
               onChanged: (value) {
-                toSearch.flat = value;
+                toSearch.flat = value.toLowerCase().trim();
               },
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
             child: ElevatedButton(
               onPressed: () async {
                 bool perms = await checkPermissions();
