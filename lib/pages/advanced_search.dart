@@ -56,6 +56,7 @@ Column buildPaddingList(Map<String, TicketLine> toSearch, BuildContext context) 
         child:TextFormField(
           decoration: InputDecoration(
             hintText: e.value.name,
+            labelText: e.value.name,
           ),
           onChanged: (value) {
             toSearch[e.key]?.value = value.toLowerCase().trim();

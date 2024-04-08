@@ -22,7 +22,7 @@ class ShowPrefs extends StatelessWidget {
             label: 'Path to DB',
             pref: 'db_path',
             onChange: (value) {
-              dbPath = value;
+              dbPath = value.trim();
             },
         ),
         const PrefTitle(title: Text('Theme')),
@@ -54,14 +54,14 @@ class ShowPrefs extends StatelessWidget {
             label: 'Passkey',
             pref: 'sync_key',
             onChange: (value) {
-              syncKey = value;
+              syncKey = value.trim();
             },
         ),
         PrefText(
-            label: 'IP:Port',
+            label: 'Address:Port',
             pref: 'sync_addr',
             onChange: (value) {
-              syncAddr = value;
+              syncAddr = value.trim();
             },
         ),
       ]),

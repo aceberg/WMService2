@@ -7,7 +7,7 @@ Future<void> main() async {
 
   final service = await PrefServiceShared.init(
     defaults: {
-      'ui_color': 0xff00aeff,
+      'ui_color': 4279690152,
       'ui_theme': 'light',
       'db_path': '/storage/emulated/0/WMService/rs1.db',
       'sync_key': '',

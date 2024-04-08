@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     const appTitle = 'WMService';
     dbPath = PrefService.of(context).get('db_path');
+    syncAddr = PrefService.of(context).get('sync_addr');
     int intColor = PrefService.of(context).get('ui_color');
     wmColor = Color(intColor);
     wmTheme = PrefService.of(context).get('ui_theme');
