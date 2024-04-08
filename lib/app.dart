@@ -119,7 +119,7 @@ class MyCustomFormState extends State<MyCustomForm> {
 
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ShowTickets(foundTickets: foundTickets)),
+                  MaterialPageRoute(builder: (context) => ShowTickets(foundTickets: foundTickets, ticketsLength: foundTickets.length,)),
                 );
               },
               child: const Text('Search'),

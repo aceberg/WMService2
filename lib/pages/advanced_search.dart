@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:wmservice/menu/drawer_menu.dart';
+import 'package:wmservice/menu/drawer_menu.dart';
 import 'package:wmservice/pages/show_tickets.dart';
 import 'package:wmservice/services/db.dart';
 import 'package:wmservice/vars_models.dart';
@@ -15,7 +15,7 @@ class AdvancedSearch extends StatelessWidget {
         title: const Text('WMService'),
         backgroundColor: wmColor,
       ),
-      // drawer: const DrawerMenu(),
+      drawer: const DrawerMenu(),
       body: const AdvancedSearchForm(),
     );
   }
@@ -75,7 +75,7 @@ Column buildPaddingList(Map<String, TicketLine> toSearch, BuildContext context) 
 
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ShowTickets(foundTickets: foundTickets)),
+            MaterialPageRoute(builder: (context) => ShowTickets(foundTickets: foundTickets, ticketsLength: foundTickets.length,)),
           );
         },
         child: const Text('Search'),

@@ -9,7 +9,7 @@ Future<void> main() async {
     defaults: {
       'ui_color': 4279690152,
       'ui_theme': 'light',
-      'db_path': '/storage/emulated/0/WMService/rs1.db',
+      'db_path': '/storage/emulated/0/WMService2/rs1.db',
       'sync_key': '',
       'sync_addr': '',
     },

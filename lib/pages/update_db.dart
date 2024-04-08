@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wmservice/vars_models.dart';
 import 'package:dio/dio.dart';
-
-// import 'package:wmservice/menu/drawer_menu.dart';
+import 'package:wmservice/menu/drawer_menu.dart';
 
 class UpdateDB extends StatelessWidget {
 
@@ -15,74 +14,73 @@ class UpdateDB extends StatelessWidget {
         title: const Text('WMService'),
         backgroundColor: wmColor,
       ),
-      // drawer: const DrawerMenu(),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            bool isErr = false;
-            final dio = Dio();
-            try {
-              await dio.download(
-                syncAddr,
-                dbPath,
-                onReceiveProgress: (received, total) {
-                  if (received == total) {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return showDownloadResult(context, false, '');
-                      },
-                    );
-                  } else {
-                    isErr = true;    
-                  }
-                },
-              );
-            } catch (e) {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return showDownloadResult(context, true, '$e');
-                },
-              );
-              isErr = false;
-            }
-            if (isErr) {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return showDownloadResult(context, true, 'Download Error');
-                },
-              );  
-            }
-          }, 
-          child: const Text('Download'),
-        ),
-      ),
+      drawer: const DrawerMenu(),
+      body: const UpdateDBUpd(),
     );
   }
 }
 
-AlertDialog showDownloadResult(BuildContext context, bool isErr, String resText) {
-  var myIcon = const Icon(Icons.check_circle, color: Colors.greenAccent,);
-  String myText = 'Success!';
+class UpdateDBUpd extends StatefulWidget {
+  const UpdateDBUpd({super.key});
 
-  if (isErr) {
-    myIcon = const Icon(Icons.error, color: Colors.redAccent,);
-    myText = 'Error!';
+  @override
+  UpdateDBUpdState createState() {
+    return UpdateDBUpdState();
   }
+}
 
-  AlertDialog alert = AlertDialog(
-    icon: myIcon,
-    title: Text(myText),
-    content: Text(resText),
-    actions: [
-      TextButton(
-        child: const Text("OK"),
-        onPressed: () => Navigator.pop(context, 'OK'),
+class UpdateDBUpdState extends State<UpdateDBUpd> {
+
+  Text state = const Text('Press button to download');
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () async {              
+              final dio = Dio();
+              try {
+                await dio.download(
+                  syncAddr,
+                  dbPath,
+                  onReceiveProgress: (received, total) {
+                    if (total <= 0) {
+                      setState(() {
+                        state = const Text('Error!', style: TextStyle(color: Colors.red),);
+                      });
+                      return;
+                    }
+                    if (received == total) {
+                      allTickets = List.empty(growable: true);
+                      setState(() {
+                        state = const Text('Success!', style: TextStyle(color: Colors.green),);
+                      });
+                    } else {
+                      setState(() {
+                        state = const Text('In progress');
+                      });
+                    }
+                  },
+                  deleteOnError: true,
+                );
+              } on DioException catch (e) {
+                setState(() {
+                  state = Text('$e');
+                });
+              }
+            }, 
+            child: const Text('Download'),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            child: state,
+          ),
+        ],
       ),
-    ],
-  );
-
-  return alert;
+    );
+  }
 }
