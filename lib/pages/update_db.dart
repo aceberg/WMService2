@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wmservice/vars_models.dart';
 import 'package:dio/dio.dart';
-import 'package:wmservice/menu/drawer_menu.dart';
+// import 'package:wmservice/menu/drawer_menu.dart';
 
 class UpdateDB extends StatelessWidget {
 
@@ -14,7 +14,7 @@ class UpdateDB extends StatelessWidget {
         title: const Text('WMService'),
         backgroundColor: wmColor,
       ),
-      drawer: const DrawerMenu(),
+      // drawer: const DrawerMenu(),
       body: const UpdateDBUpd(),
     );
   }

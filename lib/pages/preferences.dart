@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pref/pref.dart';
 import 'package:wmservice/pages/pref_color.dart';
 import 'package:wmservice/vars_models.dart';
-import 'package:wmservice/menu/drawer_menu.dart';
+// import 'package:wmservice/menu/drawer_menu.dart';
 
 class ShowPrefs extends StatelessWidget {
 
@@ -15,7 +15,7 @@ class ShowPrefs extends StatelessWidget {
         title: const Text('WMService'),
         backgroundColor: wmColor,
       ),
-      drawer: const DrawerMenu(),
+      // drawer: const DrawerMenu(),
       body: PrefPage(children: [
         const PrefTitle(title: Text('General')),
         PrefText(

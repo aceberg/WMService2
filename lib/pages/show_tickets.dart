@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wmservice/menu/drawer_menu.dart';
+// import 'package:wmservice/menu/drawer_menu.dart';
 import 'package:wmservice/pages/expand.dart';
 import 'package:wmservice/vars_models.dart';
 
@@ -17,7 +17,7 @@ class ShowTickets extends StatelessWidget {
         title: Text('Found: $ticketsLength'),
         backgroundColor: wmColor,
       ),
-      drawer: const DrawerMenu(),
+      // drawer: const DrawerMenu(),
       body: Center(
         child: ListView.builder(
           itemCount: foundTickets.length,
@@ -26,6 +26,7 @@ class ShowTickets extends StatelessWidget {
               leading: Text('${foundTickets[index]['DATE']}  ', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               title: Text('${foundTickets[index]['STREET']} ${foundTickets[index]['HOUSE']}, ${foundTickets[index]['FLAT']}'),
               subtitle: Text('${foundTickets[index]['MARK']} - ${foundTickets[index]['REPAIR']}'),
+              trailing: Text('${foundTickets[index]['SUM']}'),
               onTap: () {
                 Navigator.push(
                   context,

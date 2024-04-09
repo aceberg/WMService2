@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wmservice/vars_models.dart';
-import 'package:wmservice/menu/drawer_menu.dart';
+// import 'package:wmservice/menu/drawer_menu.dart';
 
 class ExpandTicket extends StatelessWidget {
 
@@ -15,7 +15,7 @@ class ExpandTicket extends StatelessWidget {
         title: const Text('WMService'),
         backgroundColor: wmColor,
       ),
-      drawer: const DrawerMenu(),
+      // drawer: const DrawerMenu(),
       body: Center(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
