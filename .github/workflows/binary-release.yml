@@ -5,6 +5,9 @@ on:
   release:
     types: [created]
 
+env:
+  APK_NAME: WMService2-arm64.apk
+
 jobs:
   generate:
     name: Create release-artifacts
@@ -17,16 +20,16 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version-file: pubspec.yaml
+          flutter-version: 3.19.5
 
       - run: flutter pub get
       - run: flutter build apk --release --target-platform android-arm64
 
-      - run: cp build/app/outputs/flutter-apk/app-release.apk WMService2.apk
+      - run: cp build/app/outputs/flutter-apk/app-release.apk ${{ env.APK_NAME }}
 
       - name: Upload the artifacts
         uses: skx/github-action-publish-binaries@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'WMService2.apk'
+          args: '${{ env.APK_NAME }}'
