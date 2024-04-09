@@ -50,13 +50,13 @@ class ShowPrefs extends StatelessWidget {
           },
         ),
         const PrefTitle(title: Text('Sync DB')),
-        PrefText(
-            label: 'Passkey',
-            pref: 'sync_key',
-            onChange: (value) {
-              syncKey = value.trim();
-            },
-        ),
+        // PrefText(
+        //     label: 'Passkey',
+        //     pref: 'sync_key',
+        //     onChange: (value) {
+        //       syncKey = value.trim();
+        //     },
+        // ),
         PrefText(
             label: 'Address:Port',
             pref: 'sync_addr',
