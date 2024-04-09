@@ -1,3 +1,5 @@
+[![Binary-release](https://github.com/aceberg/WMService2/actions/workflows/binary-release.yml/badge.svg)](https://github.com/aceberg/WMService2/actions/workflows/binary-release.yml)
+
 # WMService2
 
 Android app for WMService
